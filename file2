@@ -1,0 +1,29 @@
+void find(Node* root,int curr,int &mx,int h,int &maxh)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    curr=curr+root->data;
+    if(root->left==NULL&&root->right==NULL&&h>=maxh)
+    {
+        maxh=h;
+        mx=max(mx,curr);
+    }
+    if(root->left)
+    {
+        find(root->left,curr,mx,h+1,maxh);
+    }
+    if(root->right)
+    {
+        find(root->right,curr,mx,h+1,maxh);
+    }
+}
+
+
+int sumOfLongRootToLeafPath(Node* root)
+{
+	int k=0,h=0,maxh=0;
+	find(root,0,k,h,maxh);
+	return k;
+}
